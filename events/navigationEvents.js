@@ -1,7 +1,7 @@
 import { signOut } from '../utils/auth';
 import { booksOnSale, getBooks } from '../api/bookData';
 import { emptyBooks, showBooks } from '../pages/books';
-import { getAuthors } from '../api/authorData';
+import { favoriteAuthors, getAuthors } from '../api/authorData';
 import { emptyAuthors, showAuthors } from '../pages/authors';
 
 // navigation events
@@ -35,6 +35,11 @@ const navigationEvents = () => {
       }
     });
     // console.warn('CLICKED AUTHORS');
+  });
+
+  // Favorite Authors
+  document.querySelector('#favAuthors').addEventListener('click', () => {
+    favoriteAuthors().then(showAuthors);
   });
 
   // STRETCH: SEARCH
