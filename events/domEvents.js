@@ -52,12 +52,10 @@ const domEvents = () => {
     if (e.target.id.includes('add-author-btn')) {
       addAuthorForm();
     }
-    // FIXME: ADD CLICK EVENT FOR EDITING AN AUTHOR
+    // ADD CLICK EVENT FOR EDITING AN AUTHOR
     if (e.target.id.includes('update-author')) {
       const [, firebaseKey] = e.target.id.split('--');
-      getSingleAuthor(firebaseKey).then((authorObj) => {
-        addAuthorForm(authorObj);
-      });
+      getSingleAuthor(firebaseKey).then(addAuthorForm);
     }
   });
 };
