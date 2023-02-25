@@ -1,7 +1,8 @@
 import clearDom from '../utils/clearDom';
 import renderToDOM from '../utils/renderToDom';
 
-const viewBook = (obj) => {
+const viewAuthorBooks = (obj) => {
+  console.warn('viewAuthor:', obj);
   clearDom();
 
   const domString = `
@@ -26,4 +27,4 @@ const viewBook = (obj) => {
   renderToDOM('#view', domString);
 };
 
-export default viewBook;
+export default viewAuthorBooks;

@@ -10,15 +10,17 @@ const showBookDetails = (obj) => {
   let domString = '';
   domString = `
   <div class='container d-flex'>
-      <div class="card">
+      <div >
         <img class="card-img-top" src=${obj.image} alt=${obj.title} style="height: 400px;">
         <div class="card-body" style="height: 180px;">
-          <h5 class="card-title">${obj.title}</h5>
-           <p class="card-text bold">${obj.sale ? `<span class="badge badge-info sale-badge"><i class="fa fa-bell" aria-hidden="true"></i> Sale</span> $${obj.price}` : `$${obj.price}`}</p>
           
+           <button class="btn btn-info mt-2"><i id="edit-book-btn--${obj.firebaseKey}" class="fas fa-edit"></i></button>
+           <button class="btn btn-danger mt-2"><i id="delete-book-btn--${obj.firebaseKey}" class="fas fa-trash-alt"></i></button>
         </div>
       </div>
       <div id="bookDetail">
+      <h5 class="card-title">${obj.title}</h5>
+           <p class="card-text bold">${obj.sale ? `<span class="badge badge-info sale-badge"><i class="fa fa-bell" aria-hidden="true"></i> Sale</span> $${obj.price}` : `$${obj.price}`}</p>
        <p class="card-text">${obj.description}<p>
        <div>
   </div>
