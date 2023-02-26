@@ -1,14 +1,15 @@
 import { getBooks, deleteBook, getSingleBook } from '../api/bookData';
-import { showBooks, emptyBooks } from '../pages/books';
+import { showBooks } from '../pages/books';
 import {
-  getAuthors, getSingleAuthor, getAuthorBooks
+  getAuthors, getSingleAuthor
 } from '../api/authorData';
 import { showAuthors } from '../pages/authors';
 import addBookForm from '../components/forms/addBookForm';
 import addAuthorForm from '../components/forms/addAuthorForm';
-import { getBookDetails, deleteAuthorBooksRelationship } from '../api/mergedData';
+import { getBookDetails, deleteAuthorBooksRelationship, getAuthorDetails } from '../api/mergedData';
 // import viewAuthorBooks from '../pages/viewAuthorBooks';
 import viewBook from '../pages/viewBook';
+import viewAuthorBooks from '../pages/viewAuthorBooks';
 
 const domEvents = () => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
@@ -84,10 +85,7 @@ const domEvents = () => {
     //  ADD CLICK EVENT FOR GETTING AUTHOR DETAILS
     if (e.target.id.includes('view-author-btn')) {
       const [, firebaseKey] = e.target.id.split('--');
-      getSingleAuthor(firebaseKey).then((obj) => {
-        getAuthorBooks(obj.firebaseKey)
-          .then((data) => showBooks(data));
-      });
+      getAuthorDetails(firebaseKey).then(viewAuthorBooks);
     }
 
     //  ADD CLICK EVENT FOR GETTING BOOK DETAILS
@@ -97,13 +95,7 @@ const domEvents = () => {
     // }
     if (e.target.id.includes('view-book-btn')) {
       const [, firebaseKey] = e.target.id.split('--');
-      getBookDetails(firebaseKey).then((data) => {
-        if (data === {}) {
-          emptyBooks();
-        } else {
-          getBookDetails(firebaseKey).then(viewBook);
-        }
-      });
+      getBookDetails(firebaseKey).then(getBookDetails).then(viewBook);
     }
   });
 };
