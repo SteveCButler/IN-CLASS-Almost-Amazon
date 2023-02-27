@@ -95,7 +95,7 @@ const domEvents = () => {
     // }
     if (e.target.id.includes('view-book-btn')) {
       const [, firebaseKey] = e.target.id.split('--');
-      getBookDetails(firebaseKey).then(getBookDetails).then(viewBook);
+      getBookDetails(firebaseKey).then(viewBook);
     }
   });
 };
