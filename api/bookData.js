@@ -4,6 +4,19 @@ import client from '../utils/client';
 const endpoint = client.databaseURL;
 
 // GET BOOKS
+// const getBooks = () => new Promise((resolve, reject) => {
+//   fetch(`${endpoint}/books.json`, {
+//     method: 'GET',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   })
+//     .then((response) => response.json())
+//     .then((data) => resolve(Object.values(data)))
+//     .catch(reject);
+// });
+
+// GET BOOKS WITH ERROR HANDLING OF AN EMPTY ARRAY
 const getBooks = () => new Promise((resolve, reject) => {
   fetch(`${endpoint}/books.json`, {
     method: 'GET',
@@ -12,7 +25,13 @@ const getBooks = () => new Promise((resolve, reject) => {
     },
   })
     .then((response) => response.json())
-    .then((data) => resolve(Object.values(data)))
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
     .catch(reject);
 });
 
